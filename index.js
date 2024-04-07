@@ -10,6 +10,9 @@ app.use(express.urlencoded({ extended: false }));
 const { connectDB } = require('./src/config/db');
 connectDB();
 
+const productsRouter = require('./src/api/routes/product.routes');
+app.use('/api/v1/pets-products', productsRouter);
+
 const pong = (req, res, next) => res.status(200).json('Pong!');
 app.use('/ping', pong);
 
