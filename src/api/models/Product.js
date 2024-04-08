@@ -15,6 +15,6 @@ const productForPetsSchema = new Schema(
     }
 );
 
-const ProductForPets = mongoose.model('products-for-pets', productForPetsSchema, 'products-for-pets');
+const Product = mongoose.model('products-for-pets', productForPetsSchema, 'products-for-pets');
 
-module.exports = ProductForPets;
+module.exports = Product;

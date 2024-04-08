@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const ProductForPets = require('../../api/models/Product');
+const Product = require('../../api/models/Product');
 
 const organicPetsProducts = [
     {
@@ -49,16 +49,16 @@ const organicPetsProducts = [
 
 mongoose.connect(process.env.DB_URL)
     .then(async () => {
-        const productsForPetsCollection = await ProductForPets.find();
+        const productsForPetsCollection = await Product.find();
         if (productsForPetsCollection.length) {
-            await ProductForPets.collection.drop();
+            await Product.collection.drop();
             console.log(`The products for pets collection's been dropped`);
         }
     })
     .catch(err => console.log(`Error deleting data: ${err}`))
     .then(async () => {
-        const productsForPetsData = organicPetsProducts.map(product => new ProductForPets(product));
-        await ProductForPets.insertMany(productsForPetsData);
+        const productsForPetsData = organicPetsProducts.map(product => new Product(product));
+        await Product.insertMany(productsForPetsData);
         console.log('The new products for pets data are inserted on the DB');
     })
     .catch(error => console.log(`Error creating the new data: ${error}`))
